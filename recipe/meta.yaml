@@ -1,5 +1,5 @@
 {% set name = "ismrmrd-python" %}
-{% set version = "1.14.1" %}
+{% set version = "1.14.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/ismrmrd/ismrmrd-python/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: c9aa37c1f4490571b75aefdbeeb92045ae28217ba2c47655a960e007a47f856c
+  sha256: 7e53b2ecdc8c3d6a79a01f795e65180bdf3218e79adcd280d37c8b9d010bde49
 
 build:
   noarch: python
