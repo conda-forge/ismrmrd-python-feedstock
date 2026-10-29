@@ -40,7 +40,6 @@ tests:
         - pytest tests
     requirements:
       run:
-        - python ${{ python_min }}.*
         - pytest
     files:
       source:
