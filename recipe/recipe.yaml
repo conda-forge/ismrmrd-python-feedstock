@@ -1,0 +1,60 @@
+schema_version: 1
+
+context:
+  version: "1.15.0"
+
+package:
+  name: ismrmrd-python
+  version: ${{ version }}
+
+source:
+  url: https://github.com/ismrmrd/ismrmrd-python/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 7467a0340e3dbd67e7bcadae42cc11f1059ade1296a9009b21f04cd6d026bd45
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools >=78
+  run:
+    - python >=${{ python_min }}
+    - h5py >=2.3
+    - numpy >=1.22
+    - xsdata >=26.2
+
+tests:
+  - python:
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
+      imports:
+        - ismrmrd
+      pip_check: true
+  - script:
+      content:
+        - pytest tests
+    requirements:
+      run:
+        - pytest
+    files:
+      source:
+        - tests/
+
+about:
+  homepage: https://ismrmrd.github.io
+  summary: Python implementation of the ISMRMRD
+  description: |
+    Python interface and utilities for the ISMRM Raw Data (ISMRMRD a.k.a. MRD) format.
+  license: MIT
+  license_file: LICENSE
+  repository: https://github.com/ismrmrd/ismrmrd-python
+
+extra:
+  recipe-maintainers:
+    - gabuzi
+    - casperdcl
